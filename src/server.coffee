@@ -28,14 +28,9 @@ router.use (req, res, next) ->
 # test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get '/', (req, res) ->
   
-  myData = geolib.getDistance(
-    { latitude: 40.459834, longitude: 3.616937 },
-    { latitude: 40.4636094, longitude: 3.6189755 })
-  
-  console.log myData
-
   res.json 
-    dist: myData 
+    serverApp: "helion"
+    buildVersion: "0.1"
 
 router.post '/isPointInEndesa', (req, res) ->
   endesa = 

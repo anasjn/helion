@@ -21,17 +21,9 @@
   });
 
   router.get('/', function(req, res) {
-    var myData;
-    myData = geolib.getDistance({
-      latitude: 40.459834,
-      longitude: 3.616937
-    }, {
-      latitude: 40.4636094,
-      longitude: 3.6189755
-    });
-    console.log(myData);
     return res.json({
-      dist: myData
+      serverApp: "helion",
+      buildVersion: "0.1"
     });
   });
 
