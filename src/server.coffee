@@ -23,6 +23,7 @@ router = express.Router()       # get an instance of the express Router
 router.use (req, res, next) ->
   # do logging
   console.log 'Something is happening'
+  
   next() # make sure we go to the next routes and don't stop here
 
 # test route to make sure everything is working (accessed at GET http://localhost:8080/api)
@@ -33,16 +34,21 @@ router.get '/', (req, res) ->
     buildVersion: "0.1"
 
 router.post '/isPointInEndesa', (req, res) ->
+
+  # position where Endesa HQ is located in google maps
   endesa = 
     latitude: 40.459834
     longitude: 3.616937
 
+  # this is the location recieved by the request of a client.
   location = 
     latitude: req.body.latitude
     longitude: req.body.longitude
 
+  # this var stores a boolean declaring that the client's pos. is below 500 mts
   isClose = geolib.isPointInCircle endesa, location, 500
 
+  # this var stores the distance in meters
   distance = geolib.getDistance endesa, location
 
   res.json
